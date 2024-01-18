@@ -15,18 +15,18 @@ using System.Linq;
 
 namespace CarparkQueue
 {
-    public class Function1
+    public class ImportFileFunction
     {
         private readonly IImportFileBiz _importFileBiz;
         private readonly CarparkDbContext _context;
 
-        public Function1(IImportFileBiz importFileBiz, CarparkDbContext context)
+        public ImportFileFunction(IImportFileBiz importFileBiz, CarparkDbContext context)
         {
             _importFileBiz = importFileBiz;
             _context = context;
         }
 
-        [FunctionName("Function1")]
+        [FunctionName("ImportFileFunction")]
         public void Run([BlobTrigger("carpark-queue/{name}", Connection = "Carpark")]Stream myBlob, string name, ILogger log)
         {
             log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
