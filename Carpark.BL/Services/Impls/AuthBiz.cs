@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Carpark.BL.Services.Impls
 {
-    public class AuthBiz : IAuth
+    public class AuthBiz : IAuthBiz
     {
         private readonly CarparkDbContext _context;
         private readonly IConfiguration _configuration;
@@ -62,6 +62,8 @@ namespace Carpark.BL.Services.Impls
                     // Add more claims as needed
                 }),
                 Expires = DateTime.UtcNow.AddDays(7), // Token validity period
+                Issuer = _configuration["Jwt:Issuer"],
+                Audience = _configuration["Jwt:Audience"],
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
