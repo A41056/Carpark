@@ -27,15 +27,17 @@ namespace Carpark.Data.CarparkDbContext
 
                 entity.HasKey(e => e.Id);
 
-                entity.Property(e => e.UserName).IsRequired().HasMaxLength(255);
-                entity.Property(e => e.PasswordHash).IsRequired();
-                entity.Property(e => e.PasswordSalt).IsRequired();
-                entity.Property(e => e.FirstName).IsRequired().HasMaxLength(255);
-                entity.Property(e => e.LastName).IsRequired().HasMaxLength(255);
-                entity.Property(e => e.FullName).IsRequired().HasMaxLength(255);
-                entity.Property(e => e.IsActive).IsRequired().HasDefaultValue(true);
-                entity.Property(e => e.Created).IsRequired(false).HasDefaultValue(DateTime.UtcNow);
-                entity.Property(e => e.Modified).IsRequired(false).HasDefaultValue(DateTime.UtcNow);
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.UserName).IsRequired().HasMaxLength(255).HasColumnName("user_name");
+                entity.Property(e => e.PasswordHash).IsRequired().HasColumnName("password_hash");
+                entity.Property(e => e.PasswordSalt).IsRequired().HasColumnName("password_salt");
+                entity.Property(e => e.FirstName).IsRequired().HasMaxLength(255).HasColumnName("first_name");
+                entity.Property(e => e.LastName).IsRequired().HasMaxLength(255).HasColumnName("last_name");
+                entity.Property(e => e.FullName).IsRequired().HasMaxLength(255).HasColumnName("full_name");
+                entity.Property(e => e.Email).IsRequired().HasMaxLength(255).HasColumnName("email");
+                entity.Property(e => e.IsActive).IsRequired().HasDefaultValue(true).HasColumnName("is_active");
+                entity.Property(e => e.Created).IsRequired(false).HasDefaultValue(DateTime.UtcNow).HasColumnName("created");
+                entity.Property(e => e.Modified).IsRequired(false).HasDefaultValue(DateTime.UtcNow).HasColumnName("modified");
 
                 entity.HasIndex(e => e.UserName).IsUnique();
             });
@@ -46,10 +48,18 @@ namespace Carpark.Data.CarparkDbContext
 
                 entity.HasKey(e => e.CarParkNo);
 
-                entity.Property(e => e.Address).IsRequired().HasMaxLength(500);
-                entity.Property(e => e.CarParkDeck).IsRequired();
-                entity.Property(e => e.GantryHeight).IsRequired().HasDefaultValue(0.0);
-                entity.Property(e => e.CarParkBasement).IsRequired().HasDefaultValue(0);
+                entity.Property(e => e.CarParkNo).HasColumnName("car_park_no");
+                entity.Property(e => e.Address).IsRequired().HasMaxLength(500).HasColumnName("address");
+                entity.Property(e => e.XCoord).HasColumnName("x_coord");
+                entity.Property(e => e.YCoord).HasColumnName("y_coord");
+                entity.Property(e => e.CarParkType).HasColumnName("car_park_type");
+                entity.Property(e => e.ParkingTypeSystem).HasColumnName("type_of_parking_system");
+                entity.Property(e => e.ShortTermParkingType).HasColumnName("short_term_parking");
+                entity.Property(e => e.FreeParkingType).HasColumnName("free_parking");
+                entity.Property(e => e.NightParkingType).HasColumnName("night_parking");
+                entity.Property(e => e.CarParkDeck).IsRequired().HasColumnName("car_park_decks");
+                entity.Property(e => e.GantryHeight).IsRequired().HasDefaultValue(0.0).HasColumnName("gantry_height");
+                entity.Property(e => e.CarParkBasement).IsRequired().HasDefaultValue(0).HasColumnName("car_park_basement");
 
                 entity.HasOne(c => c.CarParkTypeNavigation)
                       .WithMany(t => t.CarParkNavigation)
@@ -80,7 +90,8 @@ namespace Carpark.Data.CarparkDbContext
 
                 entity.HasKey(e => e.Id);
 
-                entity.Property(e => e.CarParkTypeName).IsRequired().HasMaxLength(255);
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CarParkTypeName).IsRequired().HasMaxLength(255).HasColumnName("car_park_type_name");
             });
 
             modelBuilder.Entity<FreeParkingType>(entity =>
@@ -89,7 +100,8 @@ namespace Carpark.Data.CarparkDbContext
 
                 entity.HasKey(e => e.Id);
 
-                entity.Property(e => e.FreeParkingTypeName).IsRequired().HasMaxLength(255);
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.FreeParkingTypeName).IsRequired().HasMaxLength(255).HasColumnName("free_parking_type_name");
             });
 
             modelBuilder.Entity<ParkingTypeSystem>(entity =>
@@ -97,8 +109,9 @@ namespace Carpark.Data.CarparkDbContext
                 entity.ToTable("parking_system_type");
 
                 entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.ParkingTypeSystemName).IsRequired().HasMaxLength(255);
+                entity.Property(e => e.ParkingTypeSystemName).IsRequired().HasMaxLength(255).HasColumnName("type_of_parking_system_name");
             });
 
             modelBuilder.Entity<NightParkingType>(entity =>
@@ -106,8 +119,9 @@ namespace Carpark.Data.CarparkDbContext
                 entity.ToTable("night_parking_type");
 
                 entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.NightParkingTypeName).IsRequired().HasMaxLength(255);
+                entity.Property(e => e.NightParkingTypeName).IsRequired().HasMaxLength(255).HasColumnName("night_parking_type_name");
             });
 
             modelBuilder.Entity<ShortTermParkingType>(entity =>
@@ -115,15 +129,19 @@ namespace Carpark.Data.CarparkDbContext
                 entity.ToTable("short_term_parking_type");
 
                 entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.ShortTermParkingName).IsRequired().HasMaxLength(255);
+                entity.Property(e => e.ShortTermParkingName).IsRequired().HasMaxLength(255).HasColumnName("short_term_parking_name");
             });
 
             modelBuilder.Entity<UserFavorite>(entity => 
             {
                 entity.ToTable("user_favorite");
 
-                entity.HasKey(e => new { e.UserId, e.CarParkNo });
+                entity.HasKey(e => e.UserId);
+
+                entity.Property(e => e.UserId).HasColumnName("user_id");
+                entity.Property(e => e.CarParkNo).HasColumnName("car_park_no");
 
                 entity.HasOne(uf => uf.UserNavigation)
                       .WithOne(u => u.UserFavoriteNavigation)
@@ -134,7 +152,6 @@ namespace Carpark.Data.CarparkDbContext
                       .HasForeignKey<UserFavorite>(uf => uf.CarParkNo);
 
                 entity.HasIndex(uf => uf.UserId).IsUnique();
-                entity.HasIndex(uf => uf.CarParkNo).IsUnique();
             });
 
             base.OnModelCreating(modelBuilder);
@@ -179,10 +196,10 @@ namespace Carpark.Data.CarparkDbContext
                 PasswordSalt = passwordSalt
             };
 
-            //modelBuilder.Entity<User>().HasData(
-            //    user1,
-            //    user2
-            //);
+            modelBuilder.Entity<User>().HasData(
+                user1,
+                user2
+            );
         }
     }
 }
