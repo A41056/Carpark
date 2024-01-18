@@ -2,7 +2,7 @@
 
 namespace Carpark.BL.Services.Interfaces
 {
-    public interface IAuth
+    public interface IAuthBiz
     {
         Task<string> Authenticate(LoginRequest request);
     }

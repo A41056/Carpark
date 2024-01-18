@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -75,8 +74,28 @@ builder.Services.AddAuthentication(opt =>
     };
 });
 
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddDistributedMemoryCache(); // Required to store session data
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Session timeout
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 // Register the AuthService
-builder.Services.AddScoped<IAuth, AuthBiz>();
+builder.Services.AddScoped<IAuthBiz, AuthBiz>();
+builder.Services.AddScoped<IUserBiz, UserBiz>();
+builder.Services.AddScoped<ICarparkBiz, CarparkBiz>();
+builder.Services.AddScoped<IImportFileBiz, ImportFileBiz>();
+
+
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
+
 
 var app = builder.Build();
 
@@ -99,6 +118,7 @@ app.UseSwaggerUI(c =>
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseSession();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
