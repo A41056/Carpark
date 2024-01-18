@@ -60,9 +60,6 @@ namespace Carpark.BL.Services.Impls
             if (request.ParkingTypeSystem.HasValue)
                 query = query.Where(x => (ETypeOfParking)x.ParkingTypeSystem == request.ParkingTypeSystem);
 
-            if(request.GantryHeight.HasValue)
-                query = query.Where(x => x.GantryHeight == request.GantryHeight);
-
             int totalRow = await query.CountAsync();
 
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
