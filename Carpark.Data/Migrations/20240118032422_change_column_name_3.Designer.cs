@@ -4,6 +4,7 @@ using Carpark.Data.CarparkDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Carpark.Data.Migrations
 {
     [DbContext(typeof(CarparkDbContext.CarparkDbContext))]
-    partial class CarparkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240118032422_change_column_name_3")]
+    partial class change_column_name_3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
