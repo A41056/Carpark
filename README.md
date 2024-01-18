@@ -1,6 +1,6 @@
 # Carpark
 
-Short project description or overview.
+A take-home coding assignment for backend developer interview.
 
 ## Prerequisites
 
