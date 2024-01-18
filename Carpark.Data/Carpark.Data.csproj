@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Carpark.Utilities\Carpark.Utilities.csproj" />
+    <ProjectReference Include="..\Carpark.ViewModel\Carpark.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>

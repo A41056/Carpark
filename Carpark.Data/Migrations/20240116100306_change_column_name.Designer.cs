@@ -4,6 +4,7 @@ using Carpark.Data.CarparkDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Carpark.Data.Migrations
 {
     [DbContext(typeof(CarparkDbContext.CarparkDbContext))]
-    partial class CarparkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240116100306_change_column_name")]
+    partial class change_column_name
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +40,7 @@ namespace Carpark.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("smallint")
                         .HasDefaultValue((short)0)
-                        .HasColumnName("car_park_basement");
+                        .HasColumnName("car_park_basements");
 
                     b.Property<short>("CarParkDeck")
                         .HasColumnType("smallint")
@@ -56,7 +58,7 @@ namespace Carpark.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("decimal(18,2)")
                         .HasDefaultValue(0m)
-                        .HasColumnName("gantry_height");
+                        .HasColumnName("ganny_height");
 
                     b.Property<short>("NightParkingType")
                         .HasColumnType("smallint")
@@ -206,7 +208,7 @@ namespace Carpark.Data.Migrations
                     b.Property<DateTime?>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 3, 24, 22, 419, DateTimeKind.Utc).AddTicks(8155))
+                        .HasDefaultValue(new DateTime(2024, 1, 16, 10, 3, 6, 373, DateTimeKind.Utc).AddTicks(9294))
                         .HasColumnName("created");
 
                     b.Property<string>("Email")
@@ -242,7 +244,7 @@ namespace Carpark.Data.Migrations
                     b.Property<DateTime?>("Modified")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 3, 24, 22, 419, DateTimeKind.Utc).AddTicks(8299))
+                        .HasDefaultValue(new DateTime(2024, 1, 16, 10, 3, 6, 373, DateTimeKind.Utc).AddTicks(9437))
                         .HasColumnName("modified");
 
                     b.Property<byte[]>("PasswordHash")
@@ -267,36 +269,6 @@ namespace Carpark.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("user", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("22b85f84-cbef-4364-94f5-547223c02dac"),
-                            Created = new DateTime(2024, 1, 18, 3, 24, 22, 423, DateTimeKind.Utc).AddTicks(362),
-                            Email = "giapp@vmogroup.com",
-                            FirstName = "Pham",
-                            FullName = "Pham Quang Giap",
-                            IsActive = true,
-                            LastName = "Quang Giap",
-                            Modified = new DateTime(2024, 1, 18, 3, 24, 22, 423, DateTimeKind.Utc).AddTicks(366),
-                            PasswordHash = new byte[] { 187, 143, 30, 203, 192, 20, 77, 71, 206, 52, 17, 131, 111, 200, 152, 95, 192, 163, 18, 196, 182, 193, 20, 95, 65, 32, 240, 28, 7, 248, 145, 182, 3, 187, 73, 225, 198, 40, 122, 175, 16, 95, 251, 57, 40, 224, 136, 216, 104, 90, 207, 108, 136, 108, 108, 247, 155, 178, 95, 31, 222, 82, 213, 238 },
-                            PasswordSalt = new byte[] { 188, 251, 121, 49, 201, 105, 71, 252, 28, 92, 26, 220, 99, 89, 59, 112, 177, 153, 252, 127, 43, 208, 205, 26, 149, 138, 255, 44, 232, 2, 21, 150, 173, 160, 12, 21, 164, 137, 142, 126, 80, 19, 205, 18, 238, 28, 163, 83, 121, 219, 166, 183, 159, 76, 81, 113, 218, 52, 122, 184, 113, 11, 138, 189, 36, 96, 110, 191, 150, 150, 18, 160, 112, 186, 54, 8, 153, 171, 115, 53, 86, 49, 226, 162, 2, 178, 84, 234, 244, 33, 121, 64, 26, 100, 255, 223, 146, 226, 227, 249, 233, 18, 233, 138, 80, 241, 110, 3, 196, 157, 28, 142, 167, 5, 180, 49, 48, 181, 236, 249, 134, 33, 159, 170, 229, 114, 234, 227 },
-                            UserName = "giappq"
-                        },
-                        new
-                        {
-                            Id = new Guid("1ae5bf5f-a8f5-457d-bac4-a9f63667742c"),
-                            Created = new DateTime(2024, 1, 18, 3, 24, 22, 423, DateTimeKind.Utc).AddTicks(368),
-                            Email = "giapp1@vmogroup.com",
-                            FirstName = "Pham",
-                            FullName = "Pham Quang Giap 1",
-                            IsActive = true,
-                            LastName = "Quang Giap 1",
-                            Modified = new DateTime(2024, 1, 18, 3, 24, 22, 423, DateTimeKind.Utc).AddTicks(368),
-                            PasswordHash = new byte[] { 187, 143, 30, 203, 192, 20, 77, 71, 206, 52, 17, 131, 111, 200, 152, 95, 192, 163, 18, 196, 182, 193, 20, 95, 65, 32, 240, 28, 7, 248, 145, 182, 3, 187, 73, 225, 198, 40, 122, 175, 16, 95, 251, 57, 40, 224, 136, 216, 104, 90, 207, 108, 136, 108, 108, 247, 155, 178, 95, 31, 222, 82, 213, 238 },
-                            PasswordSalt = new byte[] { 188, 251, 121, 49, 201, 105, 71, 252, 28, 92, 26, 220, 99, 89, 59, 112, 177, 153, 252, 127, 43, 208, 205, 26, 149, 138, 255, 44, 232, 2, 21, 150, 173, 160, 12, 21, 164, 137, 142, 126, 80, 19, 205, 18, 238, 28, 163, 83, 121, 219, 166, 183, 159, 76, 81, 113, 218, 52, 122, 184, 113, 11, 138, 189, 36, 96, 110, 191, 150, 150, 18, 160, 112, 186, 54, 8, 153, 171, 115, 53, 86, 49, 226, 162, 2, 178, 84, 234, 244, 33, 121, 64, 26, 100, 255, 223, 146, 226, 227, 249, 233, 18, 233, 138, 80, 241, 110, 3, 196, 157, 28, 142, 167, 5, 180, 49, 48, 181, 236, 249, 134, 33, 159, 170, 229, 114, 234, 227 },
-                            UserName = "giappq1"
-                        });
                 });
 
             modelBuilder.Entity("Carpark.Data.Entities.UserFavorite", b =>
@@ -306,11 +278,10 @@ namespace Carpark.Data.Migrations
                         .HasColumnName("user_id");
 
                     b.Property<string>("CarParkNo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("car_park_no");
 
-                    b.HasKey("UserId");
+                    b.HasKey("UserId", "CarParkNo");
 
                     b.HasIndex("CarParkNo")
                         .IsUnique();
