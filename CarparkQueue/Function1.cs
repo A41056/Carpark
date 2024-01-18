@@ -1,6 +1,5 @@
 using Carpark.BL.Services.Interfaces;
 using Carpark.Data.CarparkDbContext;
-using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Azure.Storage.Blob;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Data.SqlClient;
@@ -9,7 +8,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -29,8 +27,6 @@ namespace CarparkQueue
         [FunctionName("Function1")]
         public void Run([BlobTrigger("carpark-queue/{name}", Connection = "Carpark")]Stream myBlob, string name, ILogger log)
         {
-            log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
-
             var connectionString = Environment.GetEnvironmentVariable("AzureWebJobsStorage", EnvironmentVariableTarget.Process);
 
             if (string.IsNullOrEmpty(connectionString))
@@ -151,7 +147,6 @@ namespace CarparkQueue
                     }
                 }
             }
-
         }
 
         private static CopyState CopyBlob(Microsoft.Azure.Storage.CloudStorageAccount cloudStorageAccount, string sourceContainerName, string destinationContainerName, string sourceFileName, string destinationFileName)
