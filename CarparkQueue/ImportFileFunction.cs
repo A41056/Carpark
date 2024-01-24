@@ -1,3 +1,4 @@
+using Carpark.Core;
 using Carpark.Core.Entities;
 using Carpark.Core.Interfaces;
 using Carpark.Core.Services.Interfaces;
@@ -71,11 +72,11 @@ namespace CarparkQueue
                 Address = row.Field<string>("address"),
                 XCoord = decimal.TryParse(row.Field<string>("x_coord"), out var xCoordValue) ? xCoordValue : default,
                 YCoord = decimal.TryParse(row.Field<string>("y_coord"), out var yCoordValue) ? yCoordValue : default,
-                CarParkType = short.TryParse(row.Field<string>("car_park_type"), out var carparkType) ? carparkType : default,
-                ParkingTypeSystem = short.TryParse(row.Field<string>("type_of_parking_system"), out var parkingSystem) ? parkingSystem : default,
-                ShortTermParkingType = short.TryParse(row.Field<string>("short_term_parking"), out var shortTermParking) ? shortTermParking : default,
-                FreeParkingType = short.TryParse(row.Field<string>("free_parking"), out var freeParking) ? freeParking : default,
-                NightParkingType = short.TryParse(row.Field<string>("night_parking"), out var nightParking) ? nightParking : default,
+                CarParkType = (short)EnumMapper.MapCarParkType(row.Field<string>("car_park_type")),
+                ParkingTypeSystem = (short)EnumMapper.MapTypeOfParking(row.Field<string>("type_of_parking_system")),
+                ShortTermParkingType = (short)EnumMapper.MapShortTermParkingType(row.Field<string>("short_term_parking")),
+                FreeParkingType = (short)EnumMapper.MapFreeParkingType(row.Field<string>("free_parking")),
+                NightParkingType = (short)EnumMapper.MapNightParkingType(row.Field<string>("night_parking")),
                 CarParkDeck = short.TryParse(row.Field<string>("car_park_decks"), out var carparkDeck) ? carparkDeck : default,
                 GantryHeight = decimal.TryParse(row.Field<string>("gantry_height"), out var gannyHeight) ? gannyHeight : default,
                 CarParkBasement = short.TryParse(row.Field<string>("car_park_basement"), out var carparkBasement) ? carparkBasement : default,

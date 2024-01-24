@@ -22,12 +22,24 @@
     <ProjectReference Include="..\Carpark.Infrastructure\Carpark.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="local.settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>local.settings.json</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="local.settings.json">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>local.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="local.settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <LastGenOutput>local.settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
 </Project>
