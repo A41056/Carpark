@@ -3,7 +3,6 @@ using System;
 using Carpark.Infrastructure.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -12,88 +11,84 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Carpark.Infrastructure.Migrations
 {
     [DbContext(typeof(CarparkDbContext))]
-    [Migration("20240118082320_seed_data_1")]
-    partial class seed_data_1
+    [Migration("20240118090907_seed_data")]
+    partial class seed_data
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.26")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.26");
 
             modelBuilder.Entity("Carpark.Core.Entities.CarPark", b =>
                 {
                     b.Property<string>("CarParkNo")
-                        .HasColumnType("nvarchar(450)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("car_park_no");
 
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("address");
 
                     b.Property<short>("CarParkBasement")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint")
+                        .HasColumnType("INTEGER")
                         .HasDefaultValue((short)0)
                         .HasColumnName("car_park_basement");
 
                     b.Property<short>("CarParkDeck")
-                        .HasColumnType("smallint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("car_park_decks");
 
                     b.Property<short>("CarParkType")
-                        .HasColumnType("smallint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("car_park_type");
 
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 980, DateTimeKind.Utc).AddTicks(8751))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 270, DateTimeKind.Utc).AddTicks(5661))
                         .HasColumnName("created_at");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("TEXT")
                         .HasColumnName("deleted_at");
 
                     b.Property<short>("FreeParkingType")
-                        .HasColumnType("smallint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("free_parking");
 
                     b.Property<decimal>("GantryHeight")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(18,2)")
+                        .HasColumnType("TEXT")
                         .HasDefaultValue(0m)
                         .HasColumnName("gantry_height");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 980, DateTimeKind.Utc).AddTicks(8912))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 270, DateTimeKind.Utc).AddTicks(5809))
                         .HasColumnName("modified_at");
 
                     b.Property<short>("NightParkingType")
-                        .HasColumnType("smallint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("night_parking");
 
                     b.Property<short>("ParkingTypeSystem")
-                        .HasColumnType("smallint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("type_of_parking_system");
 
                     b.Property<short>("ShortTermParkingType")
-                        .HasColumnType("smallint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("short_term_parking");
 
                     b.Property<decimal>("XCoord")
-                        .HasColumnType("decimal(18,2)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("x_coord");
 
                     b.Property<decimal>("YCoord")
-                        .HasColumnType("decimal(18,2)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("y_coord");
 
                     b.HasKey("CarParkNo");
@@ -118,31 +113,29 @@ namespace Carpark.Infrastructure.Migrations
                 {
                     b.Property<short?>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<short?>("Id"), 1L, 1);
 
                     b.Property<string>("CarParkTypeName")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("car_park_type_name");
 
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 982, DateTimeKind.Utc).AddTicks(6062))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 272, DateTimeKind.Utc).AddTicks(1865))
                         .HasColumnName("created_at");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("TEXT")
                         .HasColumnName("deleted_at");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 982, DateTimeKind.Utc).AddTicks(6222))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 272, DateTimeKind.Utc).AddTicks(1995))
                         .HasColumnName("modified_at");
 
                     b.HasKey("Id");
@@ -171,31 +164,29 @@ namespace Carpark.Infrastructure.Migrations
                 {
                     b.Property<short?>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<short?>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 982, DateTimeKind.Utc).AddTicks(6740))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 272, DateTimeKind.Utc).AddTicks(2512))
                         .HasColumnName("created_at");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("TEXT")
                         .HasColumnName("deleted_at");
 
                     b.Property<string>("FreeParkingTypeName")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("free_parking_type_name");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 982, DateTimeKind.Utc).AddTicks(6872))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 272, DateTimeKind.Utc).AddTicks(2626))
                         .HasColumnName("modified_at");
 
                     b.HasKey("Id");
@@ -219,31 +210,29 @@ namespace Carpark.Infrastructure.Migrations
                 {
                     b.Property<short?>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<short?>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 982, DateTimeKind.Utc).AddTicks(8108))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 272, DateTimeKind.Utc).AddTicks(3695))
                         .HasColumnName("created_at");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("TEXT")
                         .HasColumnName("deleted_at");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 982, DateTimeKind.Utc).AddTicks(8247))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 272, DateTimeKind.Utc).AddTicks(3813))
                         .HasColumnName("modified_at");
 
                     b.Property<string>("NightParkingTypeName")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("night_parking_type_name");
 
                     b.HasKey("Id");
@@ -267,31 +256,29 @@ namespace Carpark.Infrastructure.Migrations
                 {
                     b.Property<short?>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<short?>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 982, DateTimeKind.Utc).AddTicks(7379))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 272, DateTimeKind.Utc).AddTicks(3093))
                         .HasColumnName("created_at");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("TEXT")
                         .HasColumnName("deleted_at");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 982, DateTimeKind.Utc).AddTicks(7508))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 272, DateTimeKind.Utc).AddTicks(3206))
                         .HasColumnName("modified_at");
 
                     b.Property<string>("ParkingTypeSystemName")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("type_of_parking_system_name");
 
                     b.HasKey("Id");
@@ -315,31 +302,29 @@ namespace Carpark.Infrastructure.Migrations
                 {
                     b.Property<short?>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<short?>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 982, DateTimeKind.Utc).AddTicks(8688))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 272, DateTimeKind.Utc).AddTicks(4274))
                         .HasColumnName("created_at");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("TEXT")
                         .HasColumnName("deleted_at");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 982, DateTimeKind.Utc).AddTicks(8815))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 272, DateTimeKind.Utc).AddTicks(4388))
                         .HasColumnName("modified_at");
 
                     b.Property<string>("ShortTermParkingName")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("short_term_parking_name");
 
                     b.HasKey("Id");
@@ -372,28 +357,28 @@ namespace Carpark.Infrastructure.Migrations
             modelBuilder.Entity("Carpark.Core.Entities.UserFavorite", b =>
                 {
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("TEXT")
                         .HasColumnName("user_id");
 
                     b.Property<string>("CarParkNo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("car_park_no");
 
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 983, DateTimeKind.Utc).AddTicks(3472))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 272, DateTimeKind.Utc).AddTicks(8520))
                         .HasColumnName("created_at");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("TEXT")
                         .HasColumnName("deleted_at");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 983, DateTimeKind.Utc).AddTicks(3633))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 272, DateTimeKind.Utc).AddTicks(8669))
                         .HasColumnName("modified_at");
 
                     b.HasKey("UserId");
@@ -411,69 +396,69 @@ namespace Carpark.Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("TEXT")
                         .HasColumnName("id");
 
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 980, DateTimeKind.Utc).AddTicks(5657))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 270, DateTimeKind.Utc).AddTicks(3040))
                         .HasColumnName("created_at");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("TEXT")
                         .HasColumnName("deleted_at");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("email");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("first_name");
 
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("full_name");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
+                        .HasColumnType("INTEGER")
                         .HasDefaultValue(true)
                         .HasColumnName("is_active");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("last_name");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 18, 8, 23, 19, 980, DateTimeKind.Utc).AddTicks(5791))
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 1, 18, 9, 9, 7, 270, DateTimeKind.Utc).AddTicks(3154))
                         .HasColumnName("modified_at");
 
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)")
+                        .HasColumnType("BLOB")
                         .HasColumnName("password_hash");
 
                     b.Property<byte[]>("PasswordSalt")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)")
+                        .HasColumnType("BLOB")
                         .HasColumnName("password_salt");
 
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("user_name");
 
                     b.HasKey("Id");
@@ -486,16 +471,16 @@ namespace Carpark.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("dcbda72c-9f0e-4b52-843d-97de362d3be2"),
-                            CreatedAt = new DateTime(2024, 1, 18, 8, 23, 19, 984, DateTimeKind.Utc).AddTicks(5812),
+                            Id = new Guid("98a5a91d-284b-49cb-8535-e5c3c32b7267"),
+                            CreatedAt = new DateTime(2024, 1, 18, 9, 9, 7, 273, DateTimeKind.Utc).AddTicks(6792),
                             Email = "admin@vmogroup.com",
                             FirstName = "Admin",
                             FullName = "Admin Admin",
                             IsActive = true,
                             LastName = "Admin",
-                            ModifiedAt = new DateTime(2024, 1, 18, 8, 23, 19, 984, DateTimeKind.Utc).AddTicks(5816),
-                            PasswordHash = new byte[] { 66, 93, 224, 44, 43, 210, 124, 55, 114, 104, 146, 199, 5, 180, 33, 180, 206, 226, 247, 62, 60, 57, 174, 125, 212, 220, 193, 89, 207, 183, 91, 72, 121, 195, 150, 55, 101, 237, 56, 175, 246, 89, 118, 116, 188, 120, 83, 4, 215, 177, 30, 99, 231, 174, 12, 115, 66, 86, 171, 130, 132, 173, 131, 250 },
-                            PasswordSalt = new byte[] { 232, 53, 115, 36, 22, 118, 95, 192, 1, 131, 195, 85, 232, 204, 120, 207, 224, 225, 135, 164, 231, 230, 95, 41, 248, 255, 232, 186, 219, 143, 119, 51, 176, 196, 159, 226, 22, 3, 241, 47, 7, 179, 210, 87, 133, 31, 3, 128, 100, 233, 209, 95, 47, 167, 248, 78, 16, 157, 248, 29, 167, 170, 117, 25, 121, 173, 212, 243, 241, 202, 65, 10, 35, 202, 18, 224, 3, 61, 154, 104, 99, 203, 6, 58, 19, 121, 187, 148, 223, 195, 94, 213, 48, 193, 175, 52, 175, 127, 209, 20, 236, 29, 225, 128, 231, 39, 44, 202, 99, 188, 206, 205, 163, 122, 228, 117, 0, 147, 93, 78, 110, 37, 54, 110, 198, 195, 153, 209 },
+                            ModifiedAt = new DateTime(2024, 1, 18, 9, 9, 7, 273, DateTimeKind.Utc).AddTicks(6795),
+                            PasswordHash = new byte[] { 246, 79, 245, 183, 38, 31, 195, 189, 119, 33, 27, 230, 238, 226, 124, 129, 94, 193, 27, 230, 206, 124, 221, 237, 223, 20, 182, 241, 120, 41, 46, 76, 230, 222, 65, 134, 182, 51, 44, 22, 157, 38, 90, 212, 133, 241, 49, 201, 204, 53, 174, 123, 138, 249, 91, 70, 151, 119, 43, 194, 78, 185, 173, 207 },
+                            PasswordSalt = new byte[] { 131, 147, 140, 198, 136, 198, 235, 128, 37, 14, 221, 138, 183, 57, 235, 253, 169, 207, 120, 91, 112, 233, 81, 36, 143, 244, 167, 206, 227, 3, 213, 152, 255, 242, 27, 80, 217, 22, 144, 80, 145, 1, 77, 173, 110, 142, 223, 108, 26, 253, 125, 66, 160, 201, 181, 75, 11, 114, 255, 31, 54, 191, 13, 113, 102, 175, 253, 95, 228, 178, 202, 138, 128, 47, 26, 70, 59, 3, 228, 148, 109, 50, 39, 10, 254, 34, 104, 106, 3, 173, 114, 37, 9, 208, 207, 145, 121, 98, 98, 186, 95, 199, 76, 62, 29, 50, 6, 183, 187, 150, 46, 20, 29, 197, 167, 232, 198, 12, 66, 108, 216, 119, 57, 153, 135, 56, 56, 140 },
                             UserName = "admin"
                         });
                 });

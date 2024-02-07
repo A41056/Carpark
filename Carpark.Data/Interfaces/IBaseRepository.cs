@@ -1,5 +1,4 @@
 ﻿using Carpark.Core.Common;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +36,7 @@ namespace Carpark.Core.Interfaces
 
         Task<IEnumerable<T>> BulkInsert(IEnumerable<T> lstModel);
 
-        Task<EntityEntry<T>> AddUnitOfWork(T model);
+ 
 
         Task Update(T model);
         Task UpdateMany(IEnumerable<T> models);
